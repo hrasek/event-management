@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+    mysql:
+        platform: linux/x86_64
+        image: mysql:8.0
+        container_name: mysql_event_management
+        command: --default-authentication-plugin=mysql_native_password --log_bin_trust_function_creators=1
+        ports:
+            - 3306:3306
+        environment:
+            MYSQL_DATABASE: "event-management"
+            MYSQL_USER: "hrasek"
+            MYSQL_PASSWORD: "heslo"
+            MYSQL_ROOT_PASSWORD: "heslo"
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
