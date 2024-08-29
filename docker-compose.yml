@@ -1,6 +1,10 @@
 version: '3'
 
 services:
+#    php:
+#        build: ./php
+#        networks:
+#            - my-network
     mysql:
         platform: linux/x86_64
         image: mysql:8.0
@@ -18,3 +22,13 @@ services:
         restart: always
         ports:
             - 8080:8080
+    mailpit:
+        image: axllent/mailpit
+        networks:
+            - my-network
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+networks:
+    my-network:
+        driver: bridge
